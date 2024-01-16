@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>RSS.app as Data Source</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			table {
+			  font-family: arial, sans-serif;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+			
+			td, th {
+			  border: 1px solid #dddddd;
+			  text-align: left;
+			  padding: 8px;
+			}
+			
+			tr:nth-child(even) {
+			  background-color: #4d4a4a;
+			}
+			</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<pre><code data-trim data-noescape>
+				  Data Source: RSS.app
+					</code></pre>
+				  </section>
+				  <section data-markdown>
+					
+					<textarea data-template>
+					  ```js [1|2|3|4|5|6|7|8|9]
+					  Background
+					  
+					  Paid Source (monthly renewal -> Developer Plan $16.64/month)
+					  The maximum number of feeds that can be fetched using RSS.app is 100
+					  up to 50 posts per feed
+					  up to 50 post per bundle
+					  API rate limit:1 request per second
+					  Generate RSS feeds without coding
+					  Embed News Feeds
+
+					 Reference: https://rss.app/docs/api
+					  ```
+					</textarea>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Top Features
+					</code></pre>
+					<pre><code data-trim data-noescape>
+				  No Coding - Copy and paste the URL into the feed generator
+				  Customization - Extract large images & customize your feeds with advanced filters
+				  Auto-updated - The feed will update automatically
+				  Dynamic widget - Bring content to your users with adaptive and simple widgets
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Website Login Details
+					</code></pre>
+					<pre><code data-trim data-noescape>
+				  Website: https://rss.app
+				  Username: testuser@email10p.org
+				  Password: 123456!@
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						API Endpoint
+					</code></pre>
+					<pre><code data-trim data-noescape>
+
+				  Use unique Token which can be obtained from the dashboard
+				  Note: "API support is only available in Pro Plan"
+				 
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Filtering						  </code></pre>
+					<pre><code data-trim data-noescape>
+				  Note: Filtering in rss.app is not through query
+
+				  Filter feeds with no: No images,No Description,Duplicate title,etc.
+				  Blacklisting and Whitelisting
+				  Remove terms or website name from the post title
+				  Auto Hide old post: can be up to more than 365 days
+				  Replace or Remove Text by adding rule 
+				
+				 
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						RSS.app: Raise Ticket/Issue
+					</code></pre>
+					<pre><code data-trim data-noescape>
+
+				  To feedback or raise any issue/s email support@rss.app
+
+				  or contact via the chat available in rss.app.
+				 
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Design Consideration
+						  </code></pre>
+				  
+					<table class="reveal">
+						<tr>
+							<th style="color:grey; font-size: 35px;">Area</th>
+							<th style="color:grey; font-size: 35px;">Behaviour</th>
+						  </tr>
+						  <tr>
+							<td style="font-size:20px;">Scheduling</td>
+							<td style="font-size:20px;">
+								- uses offset-based pagination with the offset and limit parameters to paginate the results</br>
+								- The limit parameter accepts integer values and returns objects in reverse chronological order. The default value for limit is 10, and it can be set between 1 and 100
+
+							</td>
+						  </tr>
+						  <tr>
+							<td style="font-size:20px;">Error Handling</td>
+							<td style="font-size:20px;">
+								- When an error occurs, such as a 401 Unauthorized error, prompt the user to enter their API key or re-authenticate the application. </br>
+								- RSS.app won't generate feed if it doesn't find any post in URL posted
+								- RSS builder can be used to create a feed
+							</td>
+						  </tr>
+						  <tr>
+							<td style="font-size:20px;">Monitoring</td>
+							<td style="font-size:20px;">
+								- Feeds are managed through the overview tab </br>
+								- For analytics, it has an option of a wall widget which you can embed to a website
+								- Save specific post to collection to review later
+							</td>
+						  </tr>
+						  <tr>
+							<td style="font-size:20px;">Configuration</td>
+							<td style="font-size:20px;">
+								- Limits the max number of posts in feeds </br>
+								- Limits the max number of posts in bundles </br>
+								- Enabling Feed Translation </br>
+								- Includes images in the media tah or enclosure tag </br>
+								- Limits title length </br>
+								- Enabling HTML in description tag </br>
+								- Allowing future dates </br>
+								- Configure manually trusted domains </br>
+								- Enabling affliate and UTM tags </br>
+							</td>
+						  </tr>
+						
+					</table>
+					</section>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Design Consideration
+						  </code></pre>
+				  
+					<table class="reveal">
+						<tr>
+							<th style="color:grey; font-size: 35px;">Area</th>
+							<th style="color:grey; font-size: 35px;">Behaviour</th>
+						  </tr>
+						  
+						  <tr>
+							<td style="font-size:20px;">Testing</td>
+							<td style="font-size:20px;">
+								- Create a Test Feed, and input a URL create a new feed by entering the URL of the website you want to create a feed from<br/>
+								- Use a Feed Validator: Use a feed validator tool to check the feed for errors and ensure it is properly formatted. <br/>
+								- Test with Different Aggregators: Test the feed with different aggregators to ensure it displays correctly across all platforms.
+								 This can help identify any compatibility issues with specific aggregators</br>
+								- Monitor feed updates: Ensure that the feed is updated regularly with fresh content to keep readers engaged
+								- Email notification will be sent when there are latest updates from RSS feed 
+							</td>
+						  </tr>
+					</table>
+					</section>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Supported Protocols						  </code></pre>
+					<pre><code data-trim data-noescape>
+					RSS.app uses standard HTTP methods 
+					(such as GET, POST, PUT and DELETE) 
+					to send request and receive responses
+
+					Requesting using HTTPS are required for all API queries, 
+					and those that are not properly authenticated will be refused
+				
+				 
+					</code></pre>
+				  </section>
+				  <section>
+					<pre><code data-trim data-noescape>
+						Supported Programming Languages						  </code></pre>
+					<pre><code data-trim data-noescape>
+					Javascript
+					Python
+					Ruby
+					Java
+					PHP
+					Node.js
+
+
+				 
+					</code></pre>
+				  </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
